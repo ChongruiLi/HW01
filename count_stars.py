@@ -14,16 +14,13 @@ import time
 
 # Count stars
 count = 0
-page_num = 1
 
-while True:
-        r = requests.get("https://api.github.com/users/emaadmanzoor/repos?page_num=" + str(page_num))
-        if. r.status_code !=200:
-        break
-       
-        Data = r.json()
-        for repo in Data:
-            count = count + int(repo['stargazers_count'])
-        page_num = page_num + 1
+for i in range(1, 5):
+        r = requests.get("https://api.github.com/users/emaadmanzoor/repos?page=" + str(i))
+        if r.status_code != 200:
+            break 
+        dicts = r.json()
+        for s in dicts:
+            count = count + int(s['stargazers_count'])
 print(count)
 
